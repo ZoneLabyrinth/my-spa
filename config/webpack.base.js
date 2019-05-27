@@ -28,6 +28,9 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 
 
 let webpackConfig = {
+    entry:{
+        main: './src/main.js'
+    },
     module: {
         rules: [
             {
@@ -47,6 +50,13 @@ let webpackConfig = {
                 use: 'file-loader'
             }
         ]
+    },
+    resolve:{
+        alias: {
+            "@": path.resolve(__dirname,"../src/components"),
+            "src":path.resolve(__dirname,"../src")
+
+        }
     },
     optimization: {
         splitChunks: {

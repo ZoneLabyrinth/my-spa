@@ -5,14 +5,10 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 // const ASSET_PATH = process.env.ASSET_PATH || './';
 
 module.exports = {
-    entry: {
-        main: './src/main.js',
-    },
     output: {
         path: path.resolve(__dirname, '../dist'),
         filename: "[name].[hash:5].js",
         // publicPath: './'
-
     },
     devtool: 'source-map', //体积小
     plugins:[
