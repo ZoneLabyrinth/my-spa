@@ -1,5 +1,4 @@
 
-const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const merge = require('webpack-merge')
@@ -7,9 +6,11 @@ const merge = require('webpack-merge')
 
 const _mode = process.env.NODE_ENV || 'development'
 
-const _mergeConfig = require(`./webpack.${_mode==="production"?"prod":"dev"}.js`)
 
-const _modeflag = process.env.NODE_ENV === 'production' ? true : false
+const _mergeConfig = require(`./webpack.${_mode === "production " ?"prod":"dev"}.js`)
+
+
+const _modeflag = process.env.NODE_ENV === 'production ' ? true : false
 
 //webpack优化
 // 提示框
@@ -37,11 +38,20 @@ let webpackConfig = {
         rules: [
             {
                 test: /\.css$/,
-                use: [{
-                    loader:MiniCssExtractPlugin.loader
-                },{
-                    loader:'css-loader'
-                }]
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: ()=>[
+                                require('autoprefixer')({
+                                    browsers: ['last 2 version','>1%','ios 7']
+                                })
+                            ]
+                        }
+                    }
+                ]
             },
             {
                 test: /\.(gif|png|jpg)$/,

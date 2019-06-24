@@ -4,7 +4,8 @@ const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 // const ASSET_PATH = process.env.ASSET_PATH || './';
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
 
 module.exports = {
   output: {
@@ -15,6 +16,8 @@ module.exports = {
   devtool: 'source-map', // 体积小
   plugins: [
     new CleanWebpackPlugin(),
+
+    //压缩css
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),
